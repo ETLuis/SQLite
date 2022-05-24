@@ -2,8 +2,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
@@ -34,6 +32,7 @@ public class forma1 extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         jToolBar1.setRollover(true);
 
@@ -84,27 +83,36 @@ public class forma1 extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setText("Borrar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton5)
-                                .addGap(62, 62, 62))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(110, 110, 110)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jScrollPane1)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jButton1)
-                                                .addGap(49, 49, 49)
+                                                .addGap(18, 18, 18)
                                                 .addComponent(jButton2)
-                                                .addGap(36, 36, 36)
+                                                .addGap(18, 18, 18)
                                                 .addComponent(jButton4)
-                                                .addGap(30, 30, 30)
-                                                .addComponent(jButton3)))
-                                .addContainerGap(101, Short.MAX_VALUE))
+                                                .addGap(34, 34, 34)
+                                                .addComponent(jButton6)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                                                .addComponent(jButton3)
+                                                .addGap(29, 29, 29))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton5)
+                                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,12 +122,13 @@ public class forma1 extends javax.swing.JFrame {
                                         .addComponent(jButton1)
                                         .addComponent(jButton2)
                                         .addComponent(jButton4)
-                                        .addComponent(jButton3))
+                                        .addComponent(jButton3)
+                                        .addComponent(jButton6))
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(125, 125, 125)
+                                .addGap(126, 126, 126)
                                 .addComponent(jButton5)
-                                .addGap(150, 150, 150))
+                                .addGap(149, 149, 149))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -128,7 +137,7 @@ public class forma1 extends javax.swing.JFrame {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(0, 89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,6 +232,22 @@ public class forma1 extends javax.swing.JFrame {
         System.exit(WIDTH);
     }
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        try{
+
+            PreparedStatement st = connect.prepareStatement("delete from Legend where ID=?");
+            st.setInt(1, Integer.parseInt(JOptionPane.showInputDialog("Introduce el ID de la persona que quieres eliminar")));
+            st.execute();
+            JOptionPane.showMessageDialog(null, "Dato Eliminado");
+
+
+        }catch(Exception x){
+            JOptionPane.showMessageDialog(null, x.getMessage().toString());
+        }
+
+    }
+
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -262,6 +287,7 @@ public class forma1 extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
