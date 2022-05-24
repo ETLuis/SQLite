@@ -202,7 +202,10 @@ public class forma1 extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         try{
-            PreparedStatement st = connect.prepareStatement("select ID,Nombre from Legend");
+
+            PreparedStatement st = connect.prepareStatement("insert into Legend(ID,Nombre) values(?,?)");
+            st.setInt(1, Integer.parseInt(JOptionPane.showInputDialog("Introduce el ID")));
+            st.setString(2,JOptionPane.showInputDialog("Introduce el Nombre"));
             st.execute();
             JOptionPane.showMessageDialog(null, "Dato Guardados");
 
